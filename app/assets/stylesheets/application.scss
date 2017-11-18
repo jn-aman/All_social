@@ -1,0 +1,171 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *= require font-awesome
+ *= require_tree .
+ *= require_self
+ */
+
+ body{
+ 	padding: 0;
+ 	margin: 0;
+ }
+
+ #body-header{
+ 	padding: 0 15px;
+ 	display: flex;
+ 	flex-direction: row;
+ 	justify-content: space-between;
+
+ 	#page-logo{
+ 		width: 75px;
+
+ 		img{
+ 			width: 100%;
+ 		}
+ 	}
+
+
+ 	#auth-links{
+
+ 		ul{
+ 			list-style: none;
+ 			display: flex;
+ 			flex-direction: row;
+ 			justify-content: flex-end;
+
+ 			li{
+ 				margin-left: 8px;
+
+ 				a{
+ 					text-decoration: none;
+ 					color: black;
+ 				}
+ 			}
+ 		}
+ 	}
+
+ }
+
+
+@media screen and (max-width: 480px){
+
+	#auth-links{
+		border-radius: 1px solid black;
+		width: 35px;
+		height: 35px;
+		background-color: red;
+		margin-top: 25px;
+		position: relative;
+		ul{
+			display:none !important;
+			flex-direction: column !important;
+			position: absolute;
+			top: 25px;
+			left: -105px;
+			padding-left: 0;
+		    background: grey;
+		
+   			
+   			li{
+			    color: white;
+   			}
+		}
+
+		&:hover ul{
+			display: flex !important;
+		}
+
+
+	}
+
+}
+
+#current-user i{
+	margin-right: 10px;
+}
+
+
+
+
+
+
+
+#user-chat-box{
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    border: 1px dashed grey;
+    height: 350px;
+    width: 300px;
+
+    #chat-messages-list{
+    	list-style: none;
+	    padding: 10px;
+	    height: 70%;
+	    background-color: white;
+	    overflow: auto;
+
+	    .other-message{
+		    text-align: left;
+		    padding: 5px;
+		    span{
+		    	display: inline-block;
+	    		height: 100%;
+		    	background-color: #ffa0a0;
+		    }
+		    
+	    }
+
+	    .self-message{
+		    text-align: right;
+		    padding: 5px;
+		   
+		    span{
+		    	 
+	    		display: inline-block;
+	    		height: 100%;
+    			background-color: #a0dcff;
+		    }
+		   
+	    }
+
+    }
+    #chat-message-input-container{
+    	    height: 30%;
+		    width: 100%;
+		    display: flex;
+		    flex-direction: row;
+
+		    #chat-message-input{
+	    	    height: 50%;
+    			width: 70%;
+		    }
+
+		    #send-message{
+	    	    height: 50%;
+			    width: 30%;
+			    font-size: 25px;
+			    color: white;
+			    border: none;
+			    background: #58d258;
+		    }
+	    }
+}
+
+
+
+
+
+
+
+
+

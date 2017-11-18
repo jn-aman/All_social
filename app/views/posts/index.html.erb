@@ -1,0 +1,87 @@
+<main>
+
+
+	<div id="page-container">
+		<div id="posts-container">
+			<% if user_signed_in? %>
+			<div id="new-post-form-container">
+				<%= form_for @post, remote: true do |f| %>
+					<%= f.label :content, "Add Post" %>
+					<%= f.text_area :content, placeholder: "Type Here" %>
+					<%= f.submit %>
+				<% end %>
+			</div>
+			<% end %>
+
+
+			<div id="posts-list-container" class="animated fadeInLeft">
+
+				<ul id="posts-list">
+					<% @posts.each do |post| %>
+						<%= render 'post', p: post %>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+		<div id="friends-container">
+			<h5>Friends</h5>
+			<div id="user-search-container">
+				<input id="user-search">
+			</div>
+		</div>
+	</div>
+
+</main>
+<script type="text/javascript">
+	localStorage.page = 2;
+	localStorage.count = <%= @count %>;
+	initialScroll = 0;
+	var postsAjax;
+	function getPosts(){
+		postsAjax = $.ajax({
+			type: 'GET',
+			url: '/',
+			data: {
+				page: localStorage.page,
+				count: localStorage.count
+			},
+			dataType: 'script',
+		});
+	}
+
+	$(window).scroll(function(){
+
+		if (window.scrollY > initialScroll + 200 && postsAjax == undefined){
+			getPosts();
+			initialScroll = window.scrollY;
+		}
+
+	});
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

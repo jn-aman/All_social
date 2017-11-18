@@ -1,0 +1,44 @@
+
+<li id="post-<%= p.id %>" class="post wow fadeInUp">
+
+	<div class="post-content">
+		<div class="text">
+			<p >
+				<%= p.content %>
+			</p>
+			<p class="post-likes">
+				<span class="user-like-status">
+					<% if user_signed_in? %>
+						<%= link_to "#{p.current_like_status(current_user)}", likes_toggle_post_like_path(post_id: p.id), remote: true, method: :post %>
+					<% end %>
+				</span>
+				<span class="user-like-count">
+					<%= p.likes.length %> Likes
+				</span>
+			</p>
+			<p class="author-details">
+				<%= p.user.email%> at <%= p.created_at %>
+			</p>
+		</div>
+		
+		<p class="post-destroy-link">
+			<% if user_signed_in? && p.user == current_user %>
+			<%= link_to "X", post_path(p.id), remote: true, method: :delete %>
+			<% end %>
+		</p>
+	</div>
+	<div class="post-comments-container">
+		<% if user_signed_in? %>
+			<%= form_for @comment, remote: true do |f| %>
+				<%= f.hidden_field :post_id, value: p.id %>
+				<%= f.text_area :content, placeholder: "Add Comment" %>
+				<%= f.submit %>
+			<% end %>
+		<% end %>
+		<ul id="comments-list-<%= p.id %>" class="comments-list">
+			<% p.comments.each do |com| %>
+				<%= render 'comments/comment', com: com %>
+			<% end %>
+		</ul>
+	</div>
+</li>
